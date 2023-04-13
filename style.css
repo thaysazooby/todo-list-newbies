@@ -1,20 +1,21 @@
 :root {
-    --gray-100: #fff;
-    --gray-200: #d9d9d9;
+    --white: #fff;
+    --gray-100: #d9d9d9;
     --gray-200: #808080;
     --gray-300: #707070;
     --gray-400: #363636;
     --gray-500: #222222;
-    --gray-700: #1a1a1a;
+    --black: #1a1a1a;
   
     --blue-500: #4E6EDE;
+    --blue-600: #3352C3;
     --green-500: #26C277;
     --yellow-500: #FFD231;
 }
 
-/*:focus {
+:focus {
     outline: transparent;
-} */
+}
 
 * {
     margin: 0;
@@ -26,8 +27,8 @@
 
 body {
     background: var(--gray-500);
-    color: var(--gray-100);
-    -webkit-font-smoothing: antialised;
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
 }
 
 body,
@@ -38,7 +39,6 @@ button {
     font-size: 1rem;
 }
 
-/*
 input,
 button {
     border-radius: 8px;
@@ -49,7 +49,6 @@ input:hover,
 button:hover {
     cursor: pointer;
 }
-*/
 
 /* -------------------- WRAPPER BELLOW ------------------- */
 
@@ -73,14 +72,62 @@ button:hover {
 
     /*.wrapper {
         grid-template-columns: 1fr;
-    }*/
+        }*/
 }
 
 /* -------------------- HEADER BELLOW ------------------- */
 
-header {
+.header {
     display: flex;
+    align-items: center;
     justify-content: center;
-
     padding: calc(6.75rem - 2rem) 0;
 }
+
+/* -------------------- HEADER BELLOW ------------------- */
+
+.new_task_form {
+    display: flex;
+    gap: 16px;
+}
+
+.new_task_form input {
+    width: 100%;
+    height: 3.375rem;
+
+    background: var(--gray-400);
+    color: var(--gray-200);
+    border: 1px solid transparent;
+}
+
+.new_task_form input:hover {
+    border: 1px solid var(--blue-500);
+}
+
+.new_task_form button {
+    width: 6.625rem;
+    height: 3.25rem;
+
+    background: var(--blue-500);
+    color: var(--white);
+    border: 1px solid transparent;
+
+    display: flex;
+    align-items: center;
+}
+
+.new_task_form button:hover {
+    background-color: var(--blue-600);
+}
+
+.new_task_form button i {
+    font-size: 22px;
+    margin-left: 8px;
+}
+
+/*
+.new_task_form button:disabled {
+    background: var(--black);
+    color: var(--gray-200);
+}
+*/
