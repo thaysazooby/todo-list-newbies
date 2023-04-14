@@ -42,7 +42,7 @@ button {
 input,
 button {
     border-radius: 8px;
-    pad: 1rem;
+    padding: 1rem;
 }
 
 input:hover,
@@ -131,3 +131,17 @@ button:hover {
     color: var(--gray-200);
 }
 */
+
+/* -------------------- HEADER BELLOW ------------------- */
+
+.tasks_counter {
+    max-width: 46rem;
+    padding: 1.25rem;
+    margin: 48px auto;
+
+    border-top: 3px solid var(--gray-400);
+    border-bottom: 3px solid var(--gray-400);
+
+    display: flex;
+    justify-content: space-between;
+}
