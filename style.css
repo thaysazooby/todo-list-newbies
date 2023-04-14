@@ -7,14 +7,14 @@
     --gray-400: #363636;
     --gray-500: #222222;
     --black: #1a1a1a;
-  
-    --blue-500: #4E6EDE;
-    --blue-600: #3352C3;
-    --green-500: #26C277;
+
+    --blue-500: #4e6ede;
+    --blue-600: #3352c3;
+    --green-500: #26c277;
     --green-700: #093d24;
-    --yellow-500: #FFD231;
+    --yellow-500: #ffd231;
     --yellow-700: #644f04;
-    --red-500: #DE4E4E;
+    --red-500: #de4e4e;
 }
 
 :focus {
@@ -26,7 +26,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    transition: all .3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 body {
@@ -71,7 +71,7 @@ i:hover {
 }
 
 @media (max-width: 768px) {
-    html{
+    html {
         font-size: 87.5%;
     }
 

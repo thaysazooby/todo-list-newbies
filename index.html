@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List Newbies</title>
 
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
     <!--Phosphor-->
 
@@ -23,66 +26,65 @@
       href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/bold/style.css"
     />
 
-
     <link
       rel="stylesheet"
       type="text/css"
       href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/duotone/style.css"
     />
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper">
-        <header>
-            <img src="./assets/todo-log.svg" alt="">
-        </header>
+      <header>
+        <img src="./assets/todo-log.svg" alt="" />
+      </header>
 
-        <main>
-            <form class="new_task_form">
-                <input type="text" placeholder="Adicione uma nova tarefa">
-                <button type="submit">
-                    Criar <i class="ph-bold ph-plus-circle"></i>
-                </button>
-            </form>
+      <main>
+        <form class="new_task_form">
+          <input type="text" placeholder="Adicione uma nova tarefa" />
+          <button type="submit">
+            Criar <i class="ph-bold ph-plus-circle"></i>
+          </button>
+        </form>
 
-            <section class="tasks_counter">
-                <!-- (p>strong+span)*2 -->
-                <div class="all_tasks">
-                    <strong>Tarefas criadas</strong>
-                    <span class="count">3</span>
-                </div>
-                <div class="done_tasks">
-                    <strong>Tarefas concluídas</strong>
-                    <span class="count">4</span>
-                </div>
-            </section>
+        <section class="tasks_counter">
+          <!-- (p>strong+span)*2 -->
+          <div class="all_tasks">
+            <strong>Tarefas criadas</strong>
+            <span class="count">3</span>
+          </div>
+          <div class="done_tasks">
+            <strong>Tarefas concluídas</strong>
+            <span class="count">4</span>
+          </div>
+        </section>
 
-            <section class="empty_tasks hidden">
-                <img src="./assets/empty-tasks.svg" alt="">
-                <div>
-                    <p>Você ainda não tem tarefas cadastradas</p>
-                    <p>Crie tarefas e organize seus itens a fazer</p>
-                </div>
+        <section class="empty_tasks hidden">
+          <img src="./assets/empty-tasks.svg" alt="" />
+          <div>
+            <p>Você ainda não tem tarefas cadastradas</p>
+            <p>Crie tarefas e organize seus itens a fazer</p>
+          </div>
+        </section>
 
-            </section>
-
-            <ul class="tasks_list">
-                <li class="task todo">
-                    <div>
-                        <i class="ph-duotone ph-circle-dashed check_btn"></i>
-                        <p>Dar banho nos gatos</p>
-                    </div>
-                    <i class="ph-duotone ph-trash delete_btn"></i>
-                </li>
-                <li class="task done">
-                    <div>
-                        <i class="ph-duotone ph-check-circle check_btn"></i>
-                        <p class="risked">Dar banho nos gatos</p>
-                    </div>
-                    <i class="ph-duotone ph-trash delete_btn"></i>
-                </li>
-            </ul>          
-        </main>
+        <ul class="tasks_list">
+          <li class="task todo">
+            <div>
+              <i class="ph-duotone ph-circle-dashed check_btn"></i>
+              <p>Dar banho nos gatos</p>
+            </div>
+            <i class="ph-duotone ph-trash delete_btn"></i>
+          </li>
+          <li class="task done">
+            <div>
+              <i class="ph-duotone ph-check-circle check_btn"></i>
+              <p class="risked">Dar banho nos gatos</p>
+            </div>
+            <i class="ph-duotone ph-trash delete_btn"></i>
+          </li>
+        </ul>
+      </main>
     </div>
-    
-    </body>
+
+    <script src="tasks.js"></script>
+  </body>
 </html>
