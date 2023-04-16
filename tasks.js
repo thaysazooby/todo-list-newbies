@@ -15,5 +15,15 @@ const addTaskInput = document.getElementById("task_input")
 const addTaskButton = document.getElementsByTagName("button")
 const tasksList = document.getElementById("tasks_list")
 
+// add new task
 
+// complete task
+
+// incomplete task
+
+// delete task
+
+// sync HTML with taskData list
+
+// counter tasks
 
