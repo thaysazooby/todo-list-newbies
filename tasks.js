@@ -23,6 +23,16 @@ const tasksList = document.getElementById("tasks_list")
 function addTask(event) {
    event.preventDefault()
    console.log('Add task')
+
+   const newTaskName = addTaskInput.ariaValueMax
+
+   const newTask = {
+    id: uid(),
+    name: newTaskName,
+    toDo: true,
+   }
+
+   taskData.push(newTask)
 }
 
 // complete task
