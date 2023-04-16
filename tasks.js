@@ -16,7 +16,7 @@ let taskData = [
 ];
 
 const addTaskInput = document.getElementById("task_input");
-const addTaskButton = document.getElementsByTagName("button");
+const addTaskButton = document.getElementsByTagName("button")[0];
 const tasksList = document.getElementById("tasks_list");
 
 //create new task element
@@ -35,14 +35,15 @@ function createNewTaksEl(taskName, taskId) {
   let todoIcon = document.createElement("i");
   todoIcon.classList.add("ph-duotone");
   todoIcon.classList.add("ph-circle-dashed");
-  todoIcon.classList.add("checkt_btn");
+  todoIcon.classList.add("delete_btn");
   todoIcon.addEventListener("click", completeTask());
 
   //done icon
   let doneIcon = document.createElement("i");
   doneIcon.classList.add("ph-duotone");
   doneIcon.classList.add("ph-check-circle");
-  doneIcon.classList.add("checkt_btn");
+  doneIcon.classList.add("check_btn");
+  doneIcon.classList.add("hidden");
   doneIcon.addEventListener("click", incompleteTask());
 
   //task name /p
@@ -53,8 +54,18 @@ function createNewTaksEl(taskName, taskId) {
   let deleteIcon = document.createElement("i");
   deleteIcon.classList.add("ph-duotone");
   deleteIcon.classList.add("ph-trash");
-  deleteIcon.classList.add("checkt_btn");
+  deleteIcon.classList.add("delete_btn");
   deleteIcon.addEventListener("click", deleteTask());
+
+  leftContent.appendChild(todoIcon)
+  leftContent.appendChild(doneIcon)
+  leftContent.appendChild(name)
+
+  task.appendChild(leftContent)
+  task.appendChild(deleteIcon)
+
+  return task
+  
 }
 
 // add new task
@@ -62,7 +73,7 @@ function addTask(event) {
   event.preventDefault();
   console.log("Add task");
 
-  const newTaskName = addTaskInput.ariaValueMax;
+  const newTaskName = addTaskInput.value;
 
   const newTask = {
     id: uid(),
@@ -71,6 +82,8 @@ function addTask(event) {
   };
 
   taskData.push(newTask);
+  const taskElement = createNewTaksEl(newTask.name, newTask.id)
+  tasksList.appendChild(taskElement)
 }
 
 // complete task
