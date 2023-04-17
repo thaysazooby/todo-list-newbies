@@ -35,8 +35,8 @@ function createNewTaksEl(taskName, taskId) {
   let todoIcon = document.createElement("i");
   todoIcon.classList.add("ph-duotone");
   todoIcon.classList.add("ph-circle-dashed");
-  todoIcon.classList.add("delete_btn");
-  todoIcon.addEventListener("click", completeTask());
+  todoIcon.classList.add("check_btn");
+  todoIcon.addEventListener("click", completeTask);
 
   //done icon
   let doneIcon = document.createElement("i");
@@ -44,7 +44,7 @@ function createNewTaksEl(taskName, taskId) {
   doneIcon.classList.add("ph-check-circle");
   doneIcon.classList.add("check_btn");
   doneIcon.classList.add("hidden");
-  doneIcon.addEventListener("click", incompleteTask());
+  doneIcon.addEventListener("click", incompleteTask);
 
   //task name /p
   let name = document.createElement("p");
@@ -55,7 +55,7 @@ function createNewTaksEl(taskName, taskId) {
   deleteIcon.classList.add("ph-duotone");
   deleteIcon.classList.add("ph-trash");
   deleteIcon.classList.add("delete_btn");
-  deleteIcon.addEventListener("click", deleteTask());
+  deleteIcon.addEventListener("click", deleteTask);
 
   leftContent.appendChild(todoIcon)
   leftContent.appendChild(doneIcon)
@@ -89,6 +89,18 @@ function addTask(event) {
 // complete task
 function completeTask(event) {
   console.log("Complete task");
+  
+  const todoIcon = event.target
+  todoIcon.classList.add("hidden")
+
+  const taskToCompleteId = todoIcon.parentNode.parentNode.id
+  const taskToComplete = document.getElementById(taskToCompleteId)
+
+  taskToComplete.classList.add("done")
+  taskToComplete.classList.remove("todo")
+  
+  const doneIcon = todoIcon.parentNode.childNodes[1]
+  doneIcon.classList.remove("hidden")
 }
 
 // incomplete task
