@@ -106,7 +106,6 @@ function completeTask(event) {
     if (item.id === taskToCompleteId){
       item.toDo = false
     }
-    return item.id === taskToCompleteId
   })
 
 }
@@ -114,6 +113,24 @@ function completeTask(event) {
 // incomplete task
 function incompleteTask(event) {
   console.log("Incomplete task");
+
+  const doneIcon = event.target
+  doneIcon.classList.add("hidden")
+
+  const taskToIncompleteId = doneIcon.parentNode.parentNode.id
+  const taskToIncomplete = document.getElementById(taskToIncompleteId)
+
+  taskToIncomplete.classList.add("todo")
+  taskToIncomplete.classList.remove("done")
+
+  const todoIcon = doneIcon.parentNode.childNodes[0]
+  todoIcon.classList.remove("hidden")
+  
+  taskData.find((item) => {
+    if(item.id === taskToIncompleteId) {
+      item.toDo = true
+    }
+  })
 }
 
 // delete task
