@@ -103,4 +103,15 @@ function deleteTask(event) {
 
 // sync HTML with taskData list
 
+// for(let i = 0; i < taskData.length; i++) {
+//   const currentTask = taskData[i]
+//   const taskItem = createNewTaskEl(currentTask.name, currentTask.id);
+//   taskList.appendChild(taskItem);
+// }
+
+for(const task of taskData) {
+  const taskItem = createNewTaksEl(task.name, task.id)
+  tasksList.appendChild(taskItem)
+}
+
 // counter tasks
