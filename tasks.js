@@ -20,6 +20,17 @@ const addTaskButton = document.getElementsByTagName("button")[0];
 const tasksList = document.getElementById("tasks_list");
 const todoCounterText = document.getElementById("todo_count")
 const doneCounterText = document.getElementById("done_count")
+const emptyTasks = document.getElementById("empty_tasks")
+
+
+//empty tasks
+function verifyIfListIsEmpty() {
+  if(taskData.length === 0) {
+    emptyTasks.classList.remove("hidden")
+  } else {
+    emptyTasks.classList.add("hidden")
+  }
+}
 
 //counter
 function counter(){
@@ -38,6 +49,7 @@ function counter(){
   doneCounterText.innerText = `${doneCounter}`
 }
 
+verifyIfListIsEmpty()
 counter()
 
 //create new task element
@@ -108,6 +120,7 @@ function addTask(event) {
 
   addTaskInput.value = ''
   counter()
+  verifyIfListIsEmpty()
 }
 
 // complete task
@@ -184,6 +197,7 @@ function deleteTask(event) {
   tasksList.removeChild(taskToDelete)
 
   counter()
+  verifyIfListIsEmpty()
 }
 
 // sync HTML with taskData list
