@@ -18,6 +18,27 @@ let taskData = [
 const addTaskInput = document.getElementById("task_input");
 const addTaskButton = document.getElementsByTagName("button")[0];
 const tasksList = document.getElementById("tasks_list");
+const todoCounterText = document.getElementById("todo_count")
+const doneCounterText = document.getElementById("done_count")
+
+//counter
+function counter(){
+  let toDoCounter = 0
+  let doneCounter = 0
+
+  toDoCounter = taskData.length
+  todoCounterText.innerText = `${toDoCounter}`
+
+  for(const task of taskData){
+    if(task.toDo === false) {
+      doneCounter++
+    }
+  }
+
+  doneCounterText.innerText = `${doneCounter}`
+}
+
+counter()
 
 //create new task element
 function createNewTaksEl(taskName, taskId) {
@@ -84,6 +105,9 @@ function addTask(event) {
   taskData.push(newTask);
   const taskElement = createNewTaksEl(newTask.name, newTask.id)
   tasksList.appendChild(taskElement)
+
+  addTaskInput.value = ''
+  counter()
 }
 
 // complete task
@@ -111,6 +135,8 @@ function completeTask(event) {
     }
   })
 
+  counter()
+
 }
 
 // incomplete task
@@ -137,6 +163,8 @@ function incompleteTask(event) {
       item.toDo = true
     }
   })
+
+  counter()
 }
 
 // delete task
@@ -154,6 +182,8 @@ function deleteTask(event) {
 
   taskData = tasksWithoutDeletedOne
   tasksList.removeChild(taskToDelete)
+
+  counter()
 }
 
 // sync HTML with taskData list
@@ -168,5 +198,3 @@ for(const task of taskData) {
   const taskItem = createNewTaksEl(task.name, task.id)
   tasksList.appendChild(taskItem)
 }
-
-// counter tasks
