@@ -2,21 +2,18 @@ function uid() {
   return Date.now().toString(16) + Math.random().toString(16).substring(2);
 }
 
-let taskData = [
-  {
-    id: uid(),
-    name: "Ver se eu to na esquina",
-    toDo: true,
-  },
-  {
-    id: uid(),
-    name: "Dar banho nos gatos",
-    toDo: true,
-  },
-];
+let taskData = [];
 
-// CRIANDO O ARRAY LOCALSTORAGE
-let taskesLocalStorage = []
+function getLocalStorage () {
+  let localData = JSON.parse(localStorage.getItem('task'))
+  if (localData.length != 0) {
+    taskData = localData
+  }
+}
+
+function setLocalStorage () {
+  localStorage.setItem('task', JSON.stringify(taskData))
+}
 
 const addTaskInput = document.getElementById("task_input");
 const addTaskButton = document.getElementsByTagName("button")[0];
@@ -25,6 +22,7 @@ const todoCounterText = document.getElementById("todo_count")
 const doneCounterText = document.getElementById("done_count")
 const emptyTasks = document.getElementById("empty_tasks")
 
+getLocalStorage()
 
 //empty tasks
 function verifyIfListIsEmpty() {
@@ -56,7 +54,7 @@ verifyIfListIsEmpty()
 counter()
 
 //create new task element
-function createNewTaksEl(taskName, taskId) {
+function createNewTaksEl(taskName, taskId, taskToDo) {
   //create task li
   let task = document.createElement("li");
   task.classList.add("task");
@@ -86,6 +84,15 @@ function createNewTaksEl(taskName, taskId) {
   let name = document.createElement("p");
   name.innerHTML = taskName;
 
+  //checando se a task já foi concluída
+  if( taskToDo == false) {
+    task.classList.remove("todo")
+    task.classList.add("done")
+    doneIcon.classList.remove("hidden")
+    todoIcon.classList.add("hidden")
+    name.classList.add("risked")
+  }
+
   //delete icon
   let deleteIcon = document.createElement("i");
   deleteIcon.classList.add("ph-duotone");
@@ -100,14 +107,12 @@ function createNewTaksEl(taskName, taskId) {
   task.appendChild(leftContent)
   task.appendChild(deleteIcon)
 
-  return task
-  
+  return task  
 }
 
 // add new task
 function addTask(event) {
   event.preventDefault();
-  console.log("Add task");
 
   const newTaskName = addTaskInput.value;
 
@@ -117,25 +122,18 @@ function addTask(event) {
     toDo: true,
   };
 
-  taskesLocalStorage.push(newTask)
-  addTaskInput.value = ''
-  localStorage.task = JSON.stringify(taskesLocalStorage)
-
-  console.log(taskesLocalStorage)
-
-  // taskData.push(newTask);
-  const taskElement = createNewTaksEl(newTask.name, newTask.id)
+  taskData.push(newTask);
+  const taskElement = createNewTaksEl(newTask.name, newTask.id, newTask.toDo)
   tasksList.appendChild(taskElement)
 
-  // addTaskInput.value = ''
+  addTaskInput.value = ''
   counter()
   verifyIfListIsEmpty()
+  setLocalStorage()
 } 
 
 // complete task
 function completeTask(event) {
-  console.log("Complete task");
-  
   const todoIcon = event.target
   todoIcon.classList.add("hidden")
 
@@ -150,21 +148,20 @@ function completeTask(event) {
   
   const doneIcon = todoIcon.parentNode.childNodes[1]
   doneIcon.classList.remove("hidden")
-
+  
+  
   taskData.find((item) => {
     if (item.id === taskToCompleteId){
       item.toDo = false
-    }
+      }
   })
 
   counter()
-
+  setLocalStorage()
 }
 
 // incomplete task
 function incompleteTask(event) {
-  console.log("Incomplete task");
-
   const doneIcon = event.target
   doneIcon.classList.add("hidden")
 
@@ -187,12 +184,11 @@ function incompleteTask(event) {
   })
 
   counter()
+  setLocalStorage()
 }
 
 // delete task
 function deleteTask(event) {
-  console.log("Delete task")
-
   const taskToDeleteId = event.target.parentNode.id
   const taskToDelete = document.getElementById(taskToDeleteId)
 
@@ -207,6 +203,7 @@ function deleteTask(event) {
 
   counter()
   verifyIfListIsEmpty()
+  setLocalStorage()
 }
 
 // sync HTML with taskData list
@@ -217,11 +214,7 @@ function deleteTask(event) {
 //   taskList.appendChild(taskItem);
 // }
 
-if (localStorage.task){
-  taskesLocalStorage = JSON.parse(localStorage.getItem('task'))
-}
-
-for(const task of taskesLocalStorage) {
-  const taskItem = createNewTaksEl(task.name, task.id)
+for(const task of taskData) {
+  const taskItem = createNewTaksEl(task.name, task.id, task.toDo)
   tasksList.appendChild(taskItem)
 }
