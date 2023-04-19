@@ -217,6 +217,10 @@ function deleteTask(event) {
 //   taskList.appendChild(taskItem);
 // }
 
+if (localStorage.task){
+  taskesLocalStorage = JSON.parse(localStorage.getItem('task'))
+}
+
 for(const task of taskesLocalStorage) {
   const taskItem = createNewTaksEl(task.name, task.id)
   tasksList.appendChild(taskItem)
