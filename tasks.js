@@ -15,6 +15,9 @@ let taskData = [
   },
 ];
 
+// CRIANDO O ARRAY LOCALSTORAGE
+let taskesLocalStorage = []
+
 const addTaskInput = document.getElementById("task_input");
 const addTaskButton = document.getElementsByTagName("button")[0];
 const tasksList = document.getElementById("tasks_list");
@@ -114,14 +117,20 @@ function addTask(event) {
     toDo: true,
   };
 
-  taskData.push(newTask);
+  taskesLocalStorage.push(newTask)
+  addTaskInput.value = ''
+  localStorage.task = JSON.stringify(taskesLocalStorage)
+
+  console.log(taskesLocalStorage)
+
+  // taskData.push(newTask);
   const taskElement = createNewTaksEl(newTask.name, newTask.id)
   tasksList.appendChild(taskElement)
 
-  addTaskInput.value = ''
+  // addTaskInput.value = ''
   counter()
   verifyIfListIsEmpty()
-}
+} 
 
 // complete task
 function completeTask(event) {
@@ -208,7 +217,7 @@ function deleteTask(event) {
 //   taskList.appendChild(taskItem);
 // }
 
-for(const task of taskData) {
+for(const task of taskesLocalStorage) {
   const taskItem = createNewTaksEl(task.name, task.id)
   tasksList.appendChild(taskItem)
 }
